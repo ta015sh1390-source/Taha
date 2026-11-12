@@ -3,205 +3,251 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>American English File 3 - Smart Flashcards</title>
+<title>American English File 3 - Flashcards</title>
 <style>
-:root{--primary:#4f46e5;--bg:#0f172a;--card-bg:#1e293b;--text:#f8fafc;--text-muted:#94a3b8;--accent:#22c55e;--danger:#ef4444;}
-*{box-sizing:border-box;margin:0;padding:0;font-family:Tahoma,sans-serif;}
-body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px;}
-header{text-align:center;margin-bottom:20px;}
-header h1{font-size:1.4rem;color:#818cf8;margin-bottom:5px;}
-header p{font-size:0.85rem;color:var(--text-muted);}
-.container{width:100%;max-width:700px;display:flex;flex-direction:column;gap:15px;}
-.tabs{display:flex;gap:8px;margin-bottom:10px;}
-.tab{flex:1;padding:10px;background:var(--card-bg);border:1px solid #334155;color:var(--text);border-radius:8px;cursor:pointer;font-size:0.9rem;}
-.tab.active{background:var(--primary);border-color:var(--primary);}
-.panel{display:none;}
-.panel.active{display:block;}
-.units-nav{display:flex;gap:8px;overflow-x:auto;padding-bottom:5px;margin-bottom:10px;}
-.unit-btn{background:var(--card-bg);border:1px solid #334155;color:var(--text);padding:8px 14px;border-radius:8px;cursor:pointer;white-space:nowrap;font-size:0.85rem;}
-.unit-btn.active{background:var(--primary);border-color:var(--primary);}
-.card{background:var(--card-bg);border-radius:16px;padding:25px;border:1px solid #334155;display:flex;flex-direction:column;gap:15px;min-height:260px;justify-content:space-between;}
-.card-header{display:flex;justify-content:space-between;font-size:0.8rem;color:var(--text-muted);}
-.card-body{text-align:left;direction:ltr;display:flex;flex-direction:column;gap:10px;}
-.word{font-size:1.4rem;font-weight:bold;color:#38bdf8;word-break:break-word;}
-.example{font-size:0.95rem;color:#cbd5e1;font-style:italic;background:#0f172a;padding:10px;border-radius:6px;border-left:3px solid var(--primary);}
-.translation-box{background:#111827;padding:10px;border-radius:8px;text-align:right;direction:rtl;display:none;border:1px dashed #4b5563;font-size:0.95rem;color:#facc15;}
-.toggle-trans-btn{background:#334155;color:#e2e8f0;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.8rem;align-self:flex-start;}
-.actions{display:flex;gap:10px;}
-.btn{flex:1;padding:12px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;font-size:1rem;color:white;}
-.btn-wrong{background:var(--danger);}
-.btn-right{background:var(--accent);}
-.stats{display:flex;justify-content:space-between;font-size:0.85rem;color:var(--text-muted);background:#1e293b;padding:10px 15px;border-radius:8px;}
-textarea{width:100%;min-height:180px;padding:12px;border-radius:8px;background:#0f172a;color:var(--text);border:1px solid #334155;font-family:monospace;font-size:0.9rem;direction:ltr;}
-.input-row{display:flex;gap:8px;margin:8px 0;}
-.input-row input{flex:1;padding:10px;border-radius:8px;background:#0f172a;color:var(--text);border:1px solid #334155;font-size:0.9rem;}
-.primary-btn{background:var(--primary);color:white;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;font-weight:bold;font-size:0.95rem;}
-.secondary-btn{background:#334155;color:white;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;font-size:0.85rem;}
-.section-title{font-size:1rem;color:#818cf8;margin:15px 0 8px;font-weight:bold;}
-.extract-item{background:#0f172a;padding:10px;border-radius:8px;margin-bottom:8px;border-left:3px solid var(--accent);font-size:0.9rem;}
-.extract-item.sentence{border-left-color:#f59e0b;}
-.extract-item .meta{font-size:0.75rem;color:var(--text-muted);margin-top:4px;}
-.checkbox-row{display:flex;align-items:flex-start;gap:8px;}
-.checkbox-row input{width:18px;height:18px;cursor:pointer;margin-top:4px;flex-shrink:0;}
-.hint{font-size:0.8rem;color:var(--text-muted);margin-bottom:8px;line-height:1.6;}
-.badge{display:inline-block;padding:2px 6px;border-radius:4px;font-size:0.7rem;background:#4f46e5;color:white;margin-left:5px;}
-.badge.b2{background:#0891b2;}
-.badge.b2p{background:#4f46e5;}
-.badge.sent{background:#f59e0b;}
-.empty{text-align:center;color:var(--text-muted);padding:30px;font-size:0.9rem;}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, sans-serif; }
+body { background: #0f172a; color: #f8fafc; padding: 15px; max-width: 600px; margin: 0 auto; }
+h1 { font-size: 1.3rem; color: #818cf8; text-align: center; margin-bottom: 20px; }
+
+/* نوار تب‌ها */
+.tabs-container { display: flex; gap: 10px; margin-bottom: 20px; }
+.tab-btn { flex: 1; padding: 12px; background: #1e293b; color: #94a3b8; border: 1px solid #334155; border-radius: 8px; font-size: 1rem; cursor: pointer; font-weight: bold; }
+.tab-btn.active { background: #4f46e5; color: white; border-color: #4f46e5; }
+
+/* پنل‌ها */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* کارت */
+.card { background: #1e293b; border-radius: 12px; padding: 20px; border: 1px solid #334155; min-height: 250px; display: flex; flex-direction: column; justify-content: space-between; }
+.word-text { font-size: 1.5rem; font-weight: bold; color: #38bdf8; direction: ltr; text-align: left; }
+.example-text { font-size: 0.95rem; color: #cbd5e1; font-style: italic; direction: ltr; text-align: left; margin-top: 10px; background: #0f172a; padding: 10px; border-radius: 6px; }
+.trans-box { display: none; margin-top: 15px; background: #111827; padding: 10px; border-radius: 6px; color: #facc15; text-align: right; }
+.show-trans-btn { margin-top: 15px; background: #334155; color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; align-self: flex-start; }
+.actions { display: flex; gap: 10px; margin-top: 20px; }
+.btn { flex: 1; padding: 14px; border: none; border-radius: 8px; font-size: 1rem; font-weight: bold; color: white; cursor: pointer; }
+.btn-wrong { background: #ef4444; }
+.btn-right { background: #22c55e; }
+.btn-blue { background: #4f46e5; width: 100%; margin-top: 10px; }
+.btn-sm { padding: 8px; font-size: 0.85rem; flex: none; width: auto; background: #334155; }
+
+/* فرم‌ها */
+input[type="text"], textarea { width: 100%; padding: 12px; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: white; margin-bottom: 12px; font-family: monospace; font-size: 0.9rem; }
+textarea { height: 150px; resize: vertical; }
+.extract-item { background: #0f172a; padding: 12px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid #22c55e; }
+.extract-item.sent { border-left-color: #f59e0b; }
+.extract-item label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: bold; margin-bottom: 8px; }
+.extract-item input[type="checkbox"] { width: 18px; height: 18px; }
 </style>
 </head>
 <body>
 
-<header>
-<h1>American English File 3 — Smart Flashcards</h1>
-<p>فلش‌کارت هوشمند آفلاین • تشخیص B2+ • تکرار جعبه‌ای</p>
-</header>
+<h1>American English File 3</h1>
 
-<div class="container">
-<div class="tabs">
-<button class="tab active" onclick="switchTab('study', this)">📚 مرور</button>
-<button class="tab" onclick="switchTab('import', this)">➕ ورود متن</button>
+<div class="tabs-container">
+    <button class="tab-btn active" id="btn-tab-study" onclick="showTab('study')">📚 مرور</button>
+    <button class="tab-btn" id="btn-tab-import" onclick="showTab('import')">➕ ورود متن</button>
 </div>
 
-<div id="studyPanel" class="panel active">
-<div class="units-nav" id="unitsNav"></div>
-<div class="stats">
-<span id="progressText">—</span>
-<span id="scoreText">—</span>
-</div>
-<div class="card" id="cardContainer">
-<div class="empty">هنوز درسی اضافه نکردی. برو به تب «ورود متن».</div>
-</div>
+<!-- تب مرور -->
+<div id="panel-study" class="panel active">
+    <div id="card-container">
+        <p style="text-align:center; color:#94a3b8; padding: 30px;">هنوز درسی اضافه نکردی. برو به تب «ورود متن».</p>
+    </div>
 </div>
 
-<div id="importPanel" class="panel">
-<div class="section-title">۱. نام Unit</div>
-<div class="input-row">
-<input type="text" id="unitName" placeholder="مثلاً: Unit 5">
-</div>
-<div class="section-title">۲. متن درس را paste کن</div>
-<p class="hint">متن را از PDF کپی کن و اینجا بگذار. کلمات B2+ و جملات دشوار به‌صورت خودکار استخراج می‌شوند.</p>
-<textarea id="lessonText" placeholder="Paste your lesson text here..."></textarea>
-<div class="input-row">
-<button class="primary-btn" onclick="extractAndPreview()">🔍 استخراج</button>
-<button class="secondary-btn" onclick="loadSample()">نمونه</button>
-</div>
-<div id="previewArea"></div>
-</div>
+<!-- تب ورود متن -->
+<div id="panel-import" class="panel">
+    <p style="margin-bottom: 8px; font-size: 0.9rem;">نام درس:</p>
+    <input type="text" id="input-unit-name" placeholder="مثلاً: Unit 1">
+    
+    <p style="margin-bottom: 8px; font-size: 0.9rem;">متن درس را پیست کنید:</p>
+    <textarea id="input-lesson-text" placeholder="Paste your English text here..."></textarea>
+    
+    <button class="btn btn-blue" onclick="extractWords()">🔍 استخراج کلمات</button>
+    <button class="btn btn-sm" style="width:100%; margin-top:10px;" onclick="fillSample()">استفاده از متن نمونه</button>
+    
+    <div id="preview-container" style="margin-top: 20px;"></div>
 </div>
 
 <script>
-const B2_WORDS = new Set("ability absorb abstract absurd abundant accent accept access accident accommodate accompany accomplish according account accumulate accurate accuse achieve acknowledge acquire adapt adequate adjust admire admit adopt advance advantage advertise advocate affect afford agency agenda aggressive agriculture alert allege allocate alter alternative amateur ambition amend analyse annual anticipate anxiety apparent appeal appliance applicable apply appoint appreciate approach appropriate approve approximate arbitrary architect argue arise arrange artificial aspect assemble assess assign assist associate assume assure astonish attach attempt attitude attract attribute audience authority automatic available aware awkward balance ban bargain barrier basis behave benefit bias bind blame boast bold bond boost border bother boundary brief brilliant broad budget bulk burden calculate campaign cancel candidate capable capacity capture career casual category caution cease celebrate ceremony certificate challenge characteristic charge chase cheat chemical circumstance cite civil claim clarify classify clause client clue coherent coincide collaborate collapse colleague commence comment commercial commit commodity communicate community compatible compel compensate compete competent complain complex compliment comply component compose comprehensive compromise conceal concede conceive concentrate concept concern conclude concrete condemn conduct confer confess confidence confine confirm conflict conform confront confuse connect conscious consent consequence conserve considerable consist consistent constant constitute constrain construct consult consume contact contain contemporary contempt content contest context continue contract contradict contrary contrast contribute controversy convenient convention convert convey convince cooperate coordinate cope core corporate correspond corrupt council counter courage create credit crisis criterion critical crucial crude cruise cultivate curb currency current curriculum cycle damage dare deal debate decade deceive decent decide declare decline decorate dedicate deduce defeat defend deficiency define definite defy degree delay deliberate delicate deliver demand democracy demonstrate denote deny depart depend depict deposit depress deprive derive descend describe deserve design desire despite destination destroy detail detect determine develop deviate device devote diagnose dictate differ digest dignity dilemma diminish dip diplomatic direct disable disappoint disaster discard discipline disclose discourage discover discuss dismiss disorder display dispose dispute disrupt dissolve distinct distinguish distort distract distribute district disturb diverse divide domestic dominate donate dose draft dramatic drift drown dual dull duration dynamic eager earn ease echo economic edit educate effective efficient elaborate elect elegant element eliminate embarrass embrace emerge emergency emission emotion emphasis employ enable encounter encourage endure enforce engage enhance enormous ensure entertain enthusiasm entire entitle environment episode equal equip equivalent erode error escape essential establish estimate ethic evaluate eventually evidence evoke evolve exaggerate examine exceed excel exception excess exchange exclude execute exempt exert exhaust exhibit exist expand expect expel expense expert expire explain explicit exploit explore export expose express extend external extract extraordinary extreme facilitate factor fade fail faith familiar fascinate fashion fatal favor feature federal fee feedback fertile fiction figure finance firm flaw flee flexible float flourish fluctuate focus forbid forecast foreign forge formal format former formula fortune forward foster found fraction fragile framework frequent friction frontier frustrate fulfill function fundamental furnish gain gap gather gaze gender generate generous genuine gesture glance global govern grab grade gradual grant grasp grateful gravity grieve gross guarantee guilt habit handle harbor harm harmony harsh harvest hazard heal heritage hesitate highlight hinder hint hire historic honor hostile household humble hypothesis ideal identical identify ignore illustrate imitate immediate immense immigrant immune impact implement imply import impose impress improve impulse incentive incident incline include income incorporate increase indicate indifferent individual induce industrial inevitable infer inflate influence inform ingredient inhabit inherent inherit initial initiate injure innocent innovate inquire insight insist inspect inspire install instance institute instruct instrument insult insurance intact integrate intellectual intelligent intend intense interact interfere interior internal interpret interrupt interval intervene intimate intrigue introduce invade invest investigate invite invoke involve isolate issue item jeopardy joint journal judge justify keen label labor lack landscape launch layer leak lecture legal legend legislate legitimate lend liberal liberty license likelihood limit link literacy literal literary litigation load loan locate logic loyal magnitude maintain major mandate manipulate manual manufacture margin marine mature maximum mayor mechanism mediate medium mental mention merchant mere merge merit method migrate military mineral minimal minimize minimum minor minority miracle mislead mission mobile moderate modify moisture monitor moral motive multiple mutual narrative narrow native navigate negative neglect negotiate neutral nevertheless notion notorious novel nuclear numerous obey object oblige observe obstacle obtain obvious occasion occupy occur odd offend offset ongoing opponent opportunity oppose optimistic option orbit organize orientation origin outcome outline output outstanding overall overcome overlook overwhelm owe pace package panel parallel participate particular passive patch patent path patient pattern peak peculiar penalty perceive percent perception perform peril period permanent permit persist personality perspective persuade phase phenomenon philosophy physical pile pioneer plausible plead pledge plot policy poll pollution populate portion portray pose positive possess potential poverty practical precede precise predict prejudice preliminary premise prescribe preserve prestige presume prevail prevent previous priority privacy privilege probe proceed process proclaim profession profile profit profound progress prohibit project prominent promote prompt pronounce proof proper property proportion proposal propose prospect prosper protect protest prove provide provoke psychology publish purchase pursue qualify quantity quote radical random range rank rapid rare rate ratio rational react reaction realistic rebel recall receive recent recession recognize recommend reconcile recover recruit reduce refer reflect reform refuse regard regime region register regulate reinforce reject relate relax release relevant reluctant rely remain remark remedy remind remove render renew repeat replace report represent reputation request require rescue research resemble reserve resident resign resist resolve resort resource respond restore restrain restrict result resume retail retain retire retreat reveal revenue reverse review revise revive reward rhythm ridiculous rigid riot rival robust routine rural sacrifice satisfy scale scan scarce scatter schedule scheme scope scrutiny secure seek segment seize seldom select sensible sensitive sequence series serve session settle severe shallow shelter shift shortage significant similar simulate sincere site situation skeptical slight smooth soar sole solid somewhat sophisticated soul source spare spark specialize species specific specify spectrum speculate sphere spill spite split sponsor spontaneous spot spread stability stable stake stance standard stare statistics status steady steep stem stimulate stir stock strain strategy stream strengthen stress strict strike strive structure struggle stubborn stumble subject submit subsequent subsidy substance substitute subtle succeed sufficient suggest suitable summarize superior supply support suppose suppress surface surge surpass surrender surround survey survive suspect suspend sustain switch symbol sympathy tackle tactic talent target task technique temporary tend tendency tense terminal terminate terrain terrible territory theme theory thereby thorough threat thrive tolerate toll topic torture trace trade tradition tragedy transfer transform transit transmit transparent trap treasure treat tremendous trend trigger triumph trivial tropical trust tunnel typical ultimate undergo underlie undertake uniform unify unique unite universal urban urge utilize utmost vacuum vague valid vanish vary vast vehicle venture venue version vertical vessel veteran viable vibrant victim vigorous violate virtual virtue visible vision vital vivid vocation volume voluntary vulnerable wander warrant wealth welfare whatsoever whereas widespread willing withdraw withstand witness workshop worship worth wound yield zone".split(" "));
+// دیتابیس کلمات (خلاصه شده برای سرعت)
+const B2 = new Set("ability absorb abstract absurd abundant accent accept access accident accommodate accompany accomplish according account accumulate accurate accuse achieve acknowledge acquire adapt adequate adjust admire admit adopt advance advantage advertise advocate affect afford agency agenda aggressive agriculture alert allege allocate alter alternative amateur ambition amend analyse annual anticipate anxiety apparent appeal appliance applicable apply appoint appreciate approach appropriate approve approximate arbitrary architect argue arise arrange artificial aspect assemble assess assign assist associate assume assure astonish attach attempt attitude attract attribute audience authority automatic available aware awkward balance ban bargain barrier basis behave benefit bias bind blame boast bold bond boost border bother boundary brief brilliant broad budget bulk burden calculate campaign cancel candidate capable capacity capture career casual category caution cease celebrate ceremony certificate challenge characteristic charge chase cheat chemical circumstance cite civil claim clarify classify clause client clue coherent coincide collaborate collapse colleague commence comment commercial commit commodity communicate community compatible compel compensate compete competent complain complex compliment comply component compose comprehensive compromise conceal concede conceive concentrate concept concern conclude concrete condemn conduct confer confess confidence confine confirm conflict conform confront confuse connect conscious consent consequence conserve considerable consist consistent constant constitute constrain construct consult consume contact contain contemporary contempt content contest context continue contract contradict contrary contrast contribute controversy convenient convention convert convey convince cooperate coordinate cope core corporate correspond corrupt council counter courage create credit crisis criterion critical crucial crude cruise cultivate curb currency current curriculum cycle damage dare deal debate decade deceive decent decide declare decline decorate dedicate deduce defeat defend deficiency define definite defy degree delay deliberate delicate deliver demand democracy demonstrate denote deny depart depend depict deposit depress deprive derive descend describe deserve design desire despite destination destroy detail detect determine develop deviate device devote diagnose dictate differ digest dignity dilemma diminish dip diplomatic direct disable disappoint disaster discard discipline disclose discourage discover discuss dismiss disorder display dispose dispute disrupt dissolve distinct distinguish distort distract distribute district disturb diverse divide domestic dominate donate dose draft dramatic drift drown dual dull duration dynamic eager earn ease echo economic edit educate effective efficient elaborate elect elegant element eliminate embarrass embrace emerge emergency emission emotion emphasis employ enable encounter encourage endure enforce engage enhance enormous ensure entertain enthusiasm entire entitle environment episode equal equip equivalent erode error escape essential establish estimate ethic evaluate eventually evidence evoke evolve exaggerate examine exceed excel exception excess exchange exclude execute exempt exert exhaust exhibit exist expand expect expel expense expert expire explain explicit exploit explore export expose express extend external extract extraordinary extreme facilitate factor fade fail faith familiar fascinate fashion fatal favor feature federal fee feedback fertile fiction figure finance firm flaw flee flexible float flourish fluctuate focus forbid forecast foreign forge formal format former formula fortune forward foster found fraction fragile framework frequent friction frontier frustrate fulfill function fundamental furnish gain gap gather gaze gender generate generous genuine gesture glance global govern grab grade gradual grant grasp grateful gravity grieve gross guarantee guilt habit handle harbor harm harmony harsh harvest hazard heal heritage hesitate highlight hinder hint hire historic honor hostile household humble hypothesis ideal identical identify ignore illustrate imitate immediate immense immigrant immune impact implement imply import impose impress improve impulse incentive incident incline include income incorporate increase indicate indifferent individual induce industrial inevitable infer inflate influence inform ingredient inhabit inherent inherit initial initiate injure innocent innovate inquire insight insist inspect inspire install instance institute instruct instrument insult insurance intact integrate intellectual intelligent intend intense interact interfere interior internal interpret interrupt interval intervene intimate intrigue introduce invade invest investigate invite invoke involve isolate issue item jeopardy joint journal judge justify keen label labor lack landscape launch layer leak lecture legal legend legislate legitimate lend liberal liberty license likelihood limit link literacy literal literary litigation load loan locate logic loyal magnitude maintain major mandate manipulate manual manufacture margin marine mature maximum mayor mechanism mediate medium mental mention merchant mere merge merit method migrate military mineral minimal minimize minimum minor minority miracle mislead mission mobile moderate modify moisture monitor moral motive multiple mutual narrative narrow native navigate negative neglect negotiate neutral nevertheless notion notorious novel nuclear numerous obey object oblige observe obstacle obtain obvious occasion occupy occur odd offend offset ongoing opponent opportunity oppose optimistic option orbit organize orientation origin outcome outline output outstanding overall overcome overlook overwhelm owe pace package panel parallel participate particular passive patch patent path patient pattern peak peculiar penalty perceive percent perception perform peril period permanent permit persist personality perspective persuade phase phenomenon philosophy physical pile pioneer plausible plead pledge plot policy poll pollution populate portion portray pose positive possess potential poverty practical precede precise predict prejudice preliminary premise prescribe preserve prestige presume prevail prevent previous priority privacy privilege probe proceed process proclaim profession profile profit profound progress prohibit project prominent promote prompt pronounce proof proper property proportion proposal propose prospect prosper protect protest prove provide provoke psychology publish purchase pursue qualify quantity quote radical random range rank rapid rare rate ratio rational react reaction realistic rebel recall receive recent recession recognize recommend reconcile recover recruit reduce refer reflect reform refuse regard regime region register regulate reinforce reject relate relax release relevant reluctant rely remain remark remedy remind remove render renew repeat replace report represent reputation request require rescue research resemble reserve resident resign resist resolve resort resource respond restore restrain restrict result resume retail retain retire retreat reveal revenue reverse review revise revive reward rhythm ridiculous rigid riot rival robust routine rural sacrifice satisfy scale scan scarce scatter schedule scheme scope scrutiny secure seek segment seize seldom select sensible sensitive sequence series serve session settle severe shallow shelter shift shortage significant similar simulate sincere site situation skeptical slight smooth soar sole solid somewhat sophisticated soul source spare spark specialize species specific specify spectrum speculate sphere spill spite split sponsor spontaneous spot spread stability stable stake stance standard stare statistics status steady steep stem stimulate stir stock strain strategy stream strengthen stress strict strike strive structure struggle stubborn stumble subject submit subsequent subsidy substance substitute subtle succeed sufficient suggest suitable summarize superior supply support suppose suppress surface surge surpass surrender surround survey survive suspect suspend sustain switch symbol sympathy tackle tactic talent target task technique temporary tend tendency tense terminal terminate terrain terrible territory theme theory thereby thorough threat thrive tolerate toll topic torture trace trade tradition tragedy transfer transform transit transmit transparent trap treasure treat tremendous trend trigger triumph trivial tropical trust tunnel typical ultimate undergo underlie undertake uniform unify unique unite universal urban urge utilize utmost vacuum vague valid vanish vary vast vehicle venture venue version vertical vessel veteran viable vibrant victim vigorous violate virtual virtue visible vision vital vivid vocation volume voluntary vulnerable wander warrant wealth welfare whatsoever whereas widespread willing withdraw withstand witness workshop worship worth wound yield zone".split(" "));
 
-const B2P_WORDS = new Set("ubiquitous meticulous ambiguity inevitable resilient comprehensive substantial paradigm juxtaposition serendipity ephemeral quintessential notwithstanding dichotomy cacophony idiosyncrasy pernicious obfuscate proliferate sycophant trepidation anomaly esoteric cogent pragmatic tenacious vociferous ineffable perfunctory indefatigable magnanimous munificent obstinate ostentatious parsimonious recalcitrant sagacious taciturn vehement zealous".split(" "));
+// خواندن دیتابیس از حافظه مرورگر
+let appData = JSON.parse(localStorage.getItem('aef3_data_v4') || '{}');
+if (!appData.db) appData.db = {};
 
-const STORAGE_KEY = 'aef3_flashcards_v2';
-let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-if(!state.db) state.db = {};
-if(!state.progress) state.progress = {};
+let currentQueue = []; 
+let currentUnitName = "";
+let lastExtractedData = null;
 
-let currentUnit = null;
-let queue = [];
-let lastExtract = null;
+// تغییر تب‌ها
+function showTab(tabName) {
+    document.getElementById('panel-study').classList.remove('active');
+    document.getElementById('panel-import').classList.remove('active');
+    document.getElementById('btn-tab-study').classList.remove('active');
+    document.getElementById('btn-tab-import').classList.remove('active');
 
-function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-
-function switchTab(name, btn){
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('studyPanel').classList.toggle('active', name==='study');
-  document.getElementById('importPanel').classList.toggle('active', name==='import');
-}
-
-function detectLevel(word){
-  const w = word.toLowerCase().replace(/[^a-z']/g,'');
-  if(B2P_WORDS.has(w)) return 'B2+';
-  if(B2_WORDS.has(w)) return 'B2';
-  return null;
-}
-
-function extractFromText(text){
-  const words = new Map();
-  const sentences = [];
-  const wordRegex = /\b[a-zA-Z][a-zA-Z'-]{2,}\b/g;
-  let m;
-  while((m = wordRegex.exec(text)) !== null){
-    const raw = m[0];
-    const low = raw.toLowerCase();
-    const level = detectLevel(low);
-    if(level){
-      if(!words.has(low)) words.set(low, { word: raw, level, count: 1, example: '' });
-      else words.get(low).count++;
+    if (tabName === 'study') {
+        document.getElementById('panel-study').classList.add('active');
+        document.getElementById('btn-tab-study').classList.add('active');
+        loadStudyTab();
+    } else {
+        document.getElementById('panel-import').classList.add('active');
+        document.getElementById('btn-tab-import').classList.add('active');
     }
-  }
-  const sentenceRegex = /[^.!?]+[.!?]+/g;
-  let s;
-  while((s = sentenceRegex.exec(text)) !== null){
-    const sent = s[0].trim();
-    if(sent.length < 40) continue;
-    const wc = sent.split(/\s+/).length;
-    const hasComplex = /[;:—–]/.test(sent);
-    const hasB2Plus = sent.split(/\s+/).some(w => B2P_WORDS.has(w.toLowerCase().replace(/[^a-z']/g,'')));
-    const b2count = sent.split(/\s+/).filter(w => B2_WORDS.has(w.toLowerCase().replace(/[^a-z']/g,''))).length;
-    if(wc >= 18 || hasComplex || hasB2Plus || b2count >= 2){
-      sentences.push({ text: sent, length: wc });
-    }
-  }
-  words.forEach((info, key) => {
-    const re = new RegExp(`[^.!?]*\\b${key}\\b[^.!?]*[.!?]`, 'i');
-    const match = text.match(re);
-    if(match) info.example = match[0].trim();
-  });
-  return {
-    words: Array.from(words.values()).sort((a,b)=> a.level==='B2+' ? -1 : 1),
-    sentences: sentences.slice(0, 25)
-  };
 }
 
-function extractAndPreview(){
-  const text = document.getElementById('lessonText').value.trim();
-  const unit = document.getElementById('unitName').value.trim();
-  if(!text){ alert('متن درس را وارد کن!'); return; }
-  if(!unit){ alert('نام Unit را وارد کن!'); return; }
-  const result = extractFromText(text);
-  lastExtract = { unit, ...result };
-  if(result.words.length === 0 && result.sentences.length === 0){
-    document.getElementById('previewArea').innerHTML = '<div class="empty">چیزی استخراج نشد. متن کوتاه است یا کلمات B2 ندارد.</div>';
-    return;
-  }
-  let html = `<div class="section-title">✅ ${result.words.length} کلمه B2/B2+ و ${result.sentences.length} جمله دشوار</div>`;
-  html += '<p class="hint">هر موردی که می‌خواهی به فلش‌کارت اضافه شود را تیک بزن.</p>';
-  if(result.words.length){
-    html += `<div class="section-title">کلمات (${result.words.length})</div>`;
-    result.words.forEach((w, i) => {
-      const badge = w.level === 'B2+' ? '<span class="badge b2p">B2+</span>' : '<span class="badge b2">B2</span>';
-      html += `<div class="extract-item">
-        <div class="checkbox-row">
-          <input type="checkbox" checked data-type="word" data-idx="${i}" id="w_${i}">
-          <label for="w_${i}" style="flex:1;cursor:pointer;direction:ltr;text-align:left;">
-            <strong>${w.word}</strong> ${badge}
-            <div class="meta">تکرار: ${w.count}${w.example ? ' • ' + w.example.slice(0,90) + '…' : ''}</div>
-          </label>
-        </div>
-        <input type="text" placeholder="معنی فارسی (اختیاری)" data-trans-idx="${i}" style="width:100%;padding:6px;border-radius:6px;background:#1e293b;color:white;border:1px solid #334155;font-size:0.85rem;margin-top:4px;">
-      </div>`;
+// پر کردن متن نمونه
+function fillSample() {
+    document.getElementById('input-unit-name').value = "Unit 1";
+    document.getElementById('input-lesson-text').value = "It was an inevitable consequence of the new policy that the government had to take a comprehensive approach to the economic crisis. The situation was somewhat ambiguous, and many citizens felt that the authorities were trying to pull their legs. However, the resilient community managed to overcome the obstacles and substantially improved their living conditions.";
+}
+
+// استخراج کلمات از متن
+function extractWords() {
+    const unit = document.getElementById('input-unit-name').value.trim();
+    const text = document.getElementById('input-lesson-text').value.trim();
+
+    if (!unit || !text) {
+        alert("لطفاً نام درس و متن را وارد کنید.");
+        return;
+    }
+
+    let foundWords = [];
+    let foundSents = [];
+    let seen = new Set();
+
+    // پیدا کردن کلمات B2
+    const wordRegex = /\b[a-zA-Z][a-zA-Z'-]{2,}\b/g;
+    let match;
+    while ((match = wordRegex.exec(text)) !== null) {
+        const raw = match[0];
+        const lower = raw.toLowerCase();
+        if (B2.has(lower) && !seen.has(lower)) {
+            seen.add(lower);
+            foundWords.push({ word: raw, lower: lower });
+        }
+    }
+
+    // پیدا کردن جملات طولانی
+    const sentRegex = /[^.!?]+[.!?]+/g;
+    while ((match = sentRegex.exec(text)) !== null) {
+        const s = match[0].trim();
+        if (s.length > 50 && s.split(/\s+/).length >= 12) {
+            foundSents.push(s);
+        }
+    }
+
+    lastExtractedData = { unit, words: foundWords, sents: foundSents };
+
+    // ساخت پیش‌نمایش
+    let html = `<p style="color:#22c55e; margin-bottom:10px;">تعداد ${foundWords.length} کلمه و ${foundSents.length} جمله پیدا شد:</p>`;
+
+    foundWords.forEach((w, i) => {
+        html += `
+        <div class="extract-item">
+            <label><input type="checkbox" checked data-type="word" data-index="${i}"> ${w.word} (B2)</label>
+            <input type="text" placeholder="معنی فارسی (اختیاری)" data-trans-word="${i}" style="margin:0;">
+        </div>`;
     });
-  }
-  if(result.sentences.length){
-    html += `<div class="section-title">جملات دشوار (${result.sentences.length})</div>`;
-    result.sentences.forEach((s, i) => {
-      html += `<div class="extract-item sentence">
-        <div class="checkbox-row">
-          <input type="checkbox" checked data-type="sentence" data-idx="${i}" id="s_${i}">
-          <label for="s_${i}" style="flex:1;cursor:pointer;direction:ltr;text-align:left;">
-            <span class="badge sent">جمله</span>
-            <div style="margin-top:4px;">${s.text}</div>
-            <div class="meta">${s.length} کلمه</div>
-          </label>
-        </div>
-        <input type="text" placeholder="معنی/توضیح فارسی (اختیاری)" data-trans-sent="${i}" style="width:100%;padding:6px;border-radius:6px;background:#1e293b;color:white;border:1px solid #334155;font-size:0.85rem;margin-top:4px;">
-      </div>`;
+
+    foundSents.forEach((s, i) => {
+        html += `
+        <div class="extract-item sent">
+            <label><input type="checkbox" checked data-type="sent" data-index="${i}"> جمله دشوار</label>
+            <div style="font-size:0.85rem; direction:ltr; text-align:left; margin-bottom:8px;">${s}</div>
+            <input type="text" placeholder="ترجمه (اختیاری)" data-trans-sent="${i}" style="margin:0;">
+        </div>`;
     });
-  }
-  html += `<button class="primary-btn" style="margin-top:15px;width:100%;" onclick="sa
+
+    html += `<button class="btn btn-blue" onclick="saveExtractedCards()">💾 ذخیره درس</button>`;
+    document.getElementById('preview-container').innerHTML = html;
+}
+
+// ذخیره کارت‌ها
+function saveExtractedCards() {
+    if (!lastExtractedData) return;
+    const { unit, words, sents } = lastExtractedData;
+
+    if (!appData.db[unit]) appData.db[unit] = [];
+    let addedCount = 0;
+
+    // ذخیره کلمات تیک‌خورده
+    document.querySelectorAll('input[data-type="word"]:checked').forEach(cb => {
+        const idx = cb.getAttribute('data-index');
+        const w = words[idx];
+        const transInput = document.querySelector(`input[data-trans-word="${idx}"]`);
+        const trans = transInput && transInput.value.trim() ? transInput.value.trim() : "—";
+        
+        // جلوگیری از تکرار
+        if (!appData.db[unit].some(c => c.word.toLowerCase() === w.lower)) {
+            appData.db[unit].push({ type: 'word', word: w.word, trans: trans });
+            addedCount++;
+        }
+    });
+
+    // ذخیره جملات تیک‌خورده
+    document.querySelectorAll('input[data-type="sent"]:checked').forEach(cb => {
+        const idx = cb.getAttribute('data-index');
+        const s = sents[idx];
+        const transInput = document.querySelector(`input[data-trans-sent="${idx}"]`);
+        const trans = transInput && transInput.value.trim() ? transInput.value.trim() : "—";
+        
+        appData.db[unit].push({ type: 'sent', word: s, trans: trans });
+        addedCount++;
+    });
+
+    // ذخیره در حافظه
+    localStorage.setItem('aef3_data_v4', JSON.stringify(appData));
+    alert(`✅ ${addedCount} کارت جدید ذخیره شد!`);
+
+    // پاک کردن فرم
+    document.getElementById('input-unit-name').value = "";
+    document.getElementById('input-lesson-text').value = "";
+    document.getElementById('preview-container').innerHTML = "";
+
+    // رفتن به تب مرور
+    currentUnitName = unit;
+    initQueue(unit);
+    showTab('study');
+}
+
+// شروع مرور یک درس
+function initQueue(unit) {
+    currentUnitName = unit;
+    currentQueue = appData.db[unit].map((_, index) => ({ index: index, box: 1 }));
+    renderCard();
+}
+
+// نمایش کارت
+function renderCard() {
+    const container = document.getElementById('card-container');
+
+    if (currentQueue.length === 0) {
+        container.innerHTML = `
+            <div class="card" style="text-align:center; justify-content:center;">
+                <h2 style="color:#22c55e;">عالی بود! 🎉</h2>
+                <p style="margin-top:10px; color:#cbd5e1;">مرور این درس تمام شد.</p>
+                <button class="btn btn-blue" style="margin-top:20px;" onclick="initQueue('${currentUnitName}')">شروع مجدد</button>
+            </div>`;
+        return;
+    }
+
+    const currentItem = currentQueue[0];
+    const cardData = appData.db[currentUnitName][currentItem.index];
+
+    let html = `
+    <div class="card">
+        <div>
+            <div class="word-text">${cardData.word}</div>
+            <div class="trans-box" id="trans-box">معنی: ${cardData.trans}</div>
+            <button class="show-trans-btn" id="show-btn" onclick="document.getElementById('trans-box').style.display='block'; this.style.display='none';">نمایش معنی</button>
+        </div>
+        <div class="actions">
+            <button class="btn btn-wrong" onclick="handleAnswer(false)">بلد نبودم ❌</button>
+            <button class="btn btn-right" onclick="handleAnswer(true)">بلدم ✔️</button>
+        </div>
+    </div>
+    <div style="text-align:center; margin-top:15px; 
